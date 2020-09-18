@@ -1,6 +1,13 @@
 package main
 
+import (
+	"fmt"
+	"os"
+)
+
 func main() {
+	var number1, nubber2 int
+	fmt.Fscan(os.Stdin, &number1, &nubber2)
 
 }
 
