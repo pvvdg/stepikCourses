@@ -6,8 +6,13 @@ import (
 )
 
 func main() {
-	var number1, nubber2 int
-	fmt.Fscan(os.Stdin, &number1, &nubber2)
+	var number1, number2 int
+	fmt.Fscan(os.Stdin, &number1, &number2)
+	var tmpNumber int
+	for ; number1 > 0 && number1 < 10000; number1 /= 10 {
+		tmpNumber = number1 % 10
+		fmt.Println(tmpNumber)
+	}
 
 }
 
