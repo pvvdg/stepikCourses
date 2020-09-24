@@ -3,24 +3,26 @@ package main
 import "fmt"
 
 func main() {
-	workArray := [...]uintptr{99, 151, 137, 71, 117, 187, 20, 93, 187, 67, 1, 2, 3, 5, 7, 8}
-	var tmp1 [10]uintptr
-	var tmp2 [6]uintptr
-	//fmt.Println(workArray)
-	for i := 0; i < len(tmp1); i++ {
-		tmp1[i] = workArray[i]
+	//workArray := [16]uint8{99, 151, 137, 71, 117, 187, 20, 93, 187, 67, 1, 2, 3, 5, 7, 8}
+	var workArray [10]uint8
+	var tmp2 [6]uint8
+	var z uint8
+	for i := 0; i < len(workArray); i++ {
+		fmt.Scan(&z)
+		workArray[i] = z
 	}
-	//fmt.Println(tmp1)
 	for i := 0; i < len(tmp2); i++ {
-		tmp2[i] = workArray[10+i]
+		fmt.Scan(&z)
+		tmp2[i] = z
 	}
-	//fmt.Println(tmp2)
 	for i := 0; i < len(tmp2)-1; i += 2 {
 		a := tmp2[i]
 		b := tmp2[i+1]
-		tmp1[a], tmp1[b] = tmp1[b], tmp1[a]
+		workArray[a], workArray[b] = workArray[b], workArray[a]
 	}
-	fmt.Println(tmp1)
+	for i := 0; i < len(workArray); i++ {
+		fmt.Print(workArray[i], " ")
+	}
 }
 
 /*
