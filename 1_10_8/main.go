@@ -8,12 +8,32 @@ import (
 func main() {
 	var number1, number2 int
 	fmt.Fscan(os.Stdin, &number1, &number2)
-	var tmpNumber int
-	for ; number1 > 0 && number1 < 10000; number1 /= 10 {
-		tmpNumber = number1 % 10
-		fmt.Println(tmpNumber)
+	if number1 >= 0 && number1 <= 10000 && number2 >= 0 && number2 <= 10000 {
+		arrNum1, arrNum2 := inArray(number1), inArray(number2)
+		searchingForTheSame(arrNum1, arrNum2)
 	}
 
+}
+
+func inArray(m int) []int {
+	var arr []int
+	var tmp int
+	for m != 0 {
+		tmp = m % 10
+		arr = append(arr, tmp)
+		m /= 10
+	}
+	return arr
+}
+
+func searchingForTheSame(arr1, arr2 []int) {
+	for i := len(arr1) - 1; i >= 0; i-- {
+		for j := len(arr2) - 1; j >= 0; j-- {
+			if arr1[i] == arr2[j] {
+				fmt.Print(arr1[i], " ")
+			}
+		}
+	}
 }
 
 /*

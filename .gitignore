@@ -13,3 +13,9 @@
 
 # Dependency directories (remove the comment below to include it)
 # vendor/
+
+# Simple tasks
+/1_13_6/ 
+/1_13_7/
+/1_13_11/
+/1_13_14/
