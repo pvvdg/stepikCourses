@@ -1,7 +1,29 @@
 package main
 
-func main() {
+import "fmt"
 
+func main() {
+	fmt.Println(vote(0, 1, 1))
+}
+
+func vote(x int, y int, z int) int {
+	var result int
+	var countZero, countOne int
+	var slice []int = []int{x, y, z}
+	for _, value := range slice {
+		if value == 0 {
+			countZero++
+		} else {
+			countOne++
+		}
+	}
+	if countOne > countZero {
+		result = 1
+		return result
+	} else if countOne < countZero {
+		return result
+	}
+	return result
 }
 
 /*
