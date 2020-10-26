@@ -31,6 +31,21 @@ func main() {
 	}
 	partOfRuneText := textInRune[:midValueTextInRune]
 	fmt.Println(partOfRuneText)
+	countTrueRune := 0
+	for i := len(partOfRuneText) - 1; i >= 0; i-- {
+		for j := range partOfRuneText {
+			if textInRune[i] == partOfRuneText[j] {
+				countTrueRune++
+				break
+			}
+		}
+	}
+	fmt.Println(countTrueRune)
+	if countTrueRune == len(partOfRuneText) {
+		fmt.Print("Палиндром")
+	} else {
+		fmt.Print("Нет")
+	}
 }
 
 /*
