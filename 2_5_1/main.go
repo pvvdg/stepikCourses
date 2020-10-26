@@ -10,7 +10,7 @@ import (
 
 func main() {
 	text, _ := bufio.NewReader(os.Stdin).ReadString('\n')
-	lastСharacterValue := utf8.RuneCountInString(text) - 3
+	lastСharacterValue := utf8.RuneCountInString(text) - 2
 	textInRune := []rune(text)
 	dot := '.'
 	if unicode.IsUpper(textInRune[0]) && textInRune[lastСharacterValue] == dot {
