@@ -9,14 +9,14 @@ import (
 
 func main() {
 	text, _ := bufio.NewReader(os.Stdin).ReadString('\n')
-	text = strings.Trim(text, "\n")
-	text = strings.Trim(text, "\r")
-	fmt.Println(text)
-	//lenText := utf8.RuneCountInString(text)
-	textInRune := []rune(text)
-	lenTextInRune := len(textInRune)
-	midValueTextInRune := 0
-	if lenTextInRune >= 3 {
+	text = strings.Trim(text, "\n")  //delete '/n' from string
+	text = strings.Trim(text, "\r")  //delete '/ r' from text in OS Windows 10 bash terminal
+	text = strings.ToLower(text)     //lowercase conversion
+	textInRune := []rune(text)       //convert string variable in rune
+	lenTextInRune := len(textInRune) //count lenth in rune variable
+	midValueTextInRune := 0          //creating variable which divides rune text by half
+
+	if lenTextInRune >= 3 { // checking on half meaning
 		switch {
 		case lenTextInRune == 3:
 			midValueTextInRune = 2
@@ -29,19 +29,15 @@ func main() {
 
 		}
 	}
-	partOfRuneText := textInRune[:midValueTextInRune]
-	fmt.Println(partOfRuneText)
-	countTrueRune := 0
+	partOfRuneText := textInRune[:midValueTextInRune] //creating rune text by half
+
+	var backPartOfRuneText string
+	//coup rune values and adding in string variable backPartOfRuneText for checkig in text suffix
 	for i := len(partOfRuneText) - 1; i >= 0; i-- {
-		for j := range partOfRuneText {
-			if textInRune[i] == partOfRuneText[j] {
-				countTrueRune++
-				break
-			}
-		}
+		backPartOfRuneText += string(partOfRuneText[i])
 	}
-	fmt.Println(countTrueRune)
-	if countTrueRune == len(partOfRuneText) {
+	// checking suffix in text variable
+	if strings.HasSuffix(text, backPartOfRuneText) {
 		fmt.Print("Палиндром")
 	} else {
 		fmt.Print("Нет")
