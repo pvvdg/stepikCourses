@@ -15,7 +15,7 @@ func main() {
 	resWork := 0
 	cache := make(map[int]int, 0)
 	cache[bufSlice[0]] = work(bufSlice[0])
-	for keyCache, valCache := range cache {
+	for keyCache := range cache {
 		for _, valBuf := range bufSlice {
 			if valBuf != keyCache {
 				resWork = work(valBuf)
@@ -23,18 +23,20 @@ func main() {
 			}
 		}
 	}
-	
-	for _, val := range bufSlice {
-		for _, val := range keyCache {
-		if {
-
-		} else {
+	fmt.Println(cache)
+	for _, valB := range bufSlice {
+		for keyC, valC := range cache {
+			if valB == keyC {
+				fmt.Print(valC)
+				break
+			} else {
+				fmt.Print(work(valB))
+				break
+			}
 
 		}
-		
 	}
-}
-	fmt.Println(cache)
+	//
 }
 
 func work(x int) int {
