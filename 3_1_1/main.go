@@ -1,26 +1,39 @@
 package main
 
-import (
-	"bufio"
-	"fmt"
-	"os"
-	"strconv"
-	"strings"
-)
+import "fmt"
 
 func main() {
+	k := 10
+	n := 0
+	i := 0
+	bufSlice := make([]int, 0)
+	for i != k {
+		fmt.Scan(&n)
+		bufSlice = append(bufSlice, n)
+		i++
+	}
+	resWork := 0
 	cache := make(map[int]int, 0)
-	str, _ := bufio.NewReader(os.Stdin).ReadString('\n')
-	str = strings.Trim(str, "\n")
-	strSlice := strings.Split(str, " ")
-	strNew := strings.Join(strSlice, "")
-	intSlice := make([]int, 0)
-	fmt.Println(strNew)
-	fmt.Println(strconv.Atoi(string(strNew[1])))
-	/*for i := 0; i < 10; i++ {
-		intSlice[i], _ = strconv.Atoi(string(strNew[i]))
-	}*/
-	fmt.Println(intSlice)
+	cache[bufSlice[0]] = work(bufSlice[0])
+	for keyCache, valCache := range cache {
+		for _, valBuf := range bufSlice {
+			if valBuf != keyCache {
+				resWork = work(valBuf)
+				cache[valBuf] = resWork
+			}
+		}
+	}
+	
+	for _, val := range bufSlice {
+		for _, val := range keyCache {
+		if {
+
+		} else {
+
+		}
+		
+	}
+}
 	fmt.Println(cache)
 }
 
