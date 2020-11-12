@@ -3,40 +3,27 @@ package main
 import "fmt"
 
 func main() {
-	k := 10
-	n := 0
-	i := 0
-	bufSlice := make([]int, 0)
-	for i != k {
+	n := 0 // from bufio
+	i := 0 // start value in for
+
+	bufNumbers := make([]int, 0)
+	resWork := 0
+	cache := make(map[int]int)
+
+	for i != 10 { // read all numbers and append the'is in slice
 		fmt.Scan(&n)
-		bufSlice = append(bufSlice, n)
+		if value, ok := cache[n]; ok {
+			bufNumbers = append(bufNumbers, value)
+		} else {
+			resWork = work(n)
+			cache[n] = resWork
+			bufNumbers = append(bufNumbers, resWork)
+		}
 		i++
 	}
-	resWork := 0
-	cache := make(map[int]int, 0)
-	cache[bufSlice[0]] = work(bufSlice[0])
-	for keyCache := range cache {
-		for _, valBuf := range bufSlice {
-			if valBuf != keyCache {
-				resWork = work(valBuf)
-				cache[valBuf] = resWork
-			}
-		}
+	for _, valueFromBufNumbers := range bufNumbers {
+		fmt.Print(valueFromBufNumbers, " ")
 	}
-	fmt.Println(cache)
-	for _, valB := range bufSlice {
-		for keyC, valC := range cache {
-			if valB == keyC {
-				fmt.Print(valC)
-				break
-			} else {
-				fmt.Print(work(valB))
-				break
-			}
-
-		}
-	}
-	//
 }
 
 func work(x int) int {
@@ -63,6 +50,8 @@ func work(x int) int
 Sample Input:
 
 3 1 5 2 3 5 3 0 3 4
+
+1 5 0 -1 5 0 7 0 6 7
 
 Sample Output:
 
