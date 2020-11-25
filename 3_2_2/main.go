@@ -1,6 +1,7 @@
 package main
 
 import (
+	"bufio"
 	"encoding/csv"
 	"fmt"
 	"os"
@@ -15,10 +16,24 @@ func main() {
 
 func solve() {
 	//1 149,6088607594936;1 179,0666666666666
-	var str string
-	fmt.Scan(&str)
-	strDelimit := strings.Split(str, ";")
-	fmt.Println(strDelimit)
+	//bufSliceFloat := make([]float64, 0)
+	str, _ := bufio.NewReader(os.Stdin).ReadString('\n')
+	str = strings.Trim(str, "\n")
+	str = strings.TrimSuffix(str)
+	bufSlice := []rune(str)
+	for _, val := range bufSlice {
+		fmt.Println(val)
+	}
+	//fmt.Println(str)
+	//strDelimit := strings.Split(str, ";")
+	/*for _, val := range strDelimit {
+		valWithoutSpaces := strings.Replace(strings.Replace(val, " ", "", -1), ",", ".", -1)
+		//fmt.Println(valWithoutSpaces)
+		valWithoutSpacesFloat, _ := strconv.ParseFloat(valWithoutSpaces, 64)
+		bufSliceFloat = append(bufSliceFloat, valWithoutSpacesFloat)
+		//fmt.Println(bufSliceFloat)
+	}
+	fmt.Println(bufSliceFloat[0] / bufSliceFloat[1])*/
 }
 
 func solveCSV(fileName string) {
