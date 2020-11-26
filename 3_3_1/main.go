@@ -22,9 +22,21 @@ func fn(num uint) uint {
 }
 
 func main() {
-	var num uint
-	fmt.Scan(&num)
-	fmt.Println(fn(num))
+	tests := []struct {
+		number uint
+		result uint
+	}{
+		{727178, 28},
+		//здесь можно добавлять тестовые данные и ожидаемый результат
+	}
+
+	for _, t := range tests {
+		if got := fn(t.number); got != t.result {
+			fmt.Printf("Ошибка: аргумент %d, результат %d, ожидаемый результат %d\n", t.number, got, t.result)
+		} else {
+			fmt.Println("OK ", t.number, "=", t.result)
+		}
+	}
 }
 
 /*
