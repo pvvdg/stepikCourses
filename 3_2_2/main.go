@@ -17,7 +17,7 @@ func main() {
 func solve() {
 	bufSliceFloat := make([]float64, 0)
 	str, _ := bufio.NewReader(os.Stdin).ReadString('\n')
-	str = strings.TrimSuffix(str, "\n")
+	str = strings.TrimSuffix(strings.TrimSuffix(str, "\n"), "\r") // for Windows 10 use trim '\r'
 	strDelimit := strings.Split(str, ";")
 	for _, val := range strDelimit {
 		valWithoutSpaces := strings.Replace(strings.Replace(val, " ", "", -1), ",", ".", -1)
