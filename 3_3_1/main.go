@@ -5,38 +5,30 @@ import (
 	"strconv"
 )
 
-func fn(num uint) uint {
-	if num > 0 {
-		newStr := ""
-		numToStr := strconv.Itoa(int(num))
-		for _, val := range numToStr {
-			intNum, _ := strconv.Atoi(string(val))
-			if intNum%2 == 0 {
-				newStr += strconv.Itoa(intNum)
-			}
-		}
-		resInt, _ := strconv.Atoi(newStr)
-		return uint(resInt)
-	}
-	return 100
-}
-
 func main() {
-	tests := []struct {
-		number uint
-		result uint
-	}{
-		{727178, 28},
-		//здесь можно добавлять тестовые данные и ожидаемый результат
+
+	fn := func(num uint) uint {
+		if num > 0 {
+			newStr := ""
+			numToStr := strconv.Itoa(int(num))
+			for _, val := range numToStr {
+				intNum, _ := strconv.Atoi(string(val))
+				if intNum%2 == 0 {
+					newStr += strconv.Itoa(intNum)
+				}
+			}
+			resInt, _ := strconv.Atoi(newStr)
+			if resInt == 0 {
+				return 100
+			}
+			return uint(resInt)
+		}
+		return 100
 	}
 
-	for _, t := range tests {
-		if got := fn(t.number); got != t.result {
-			fmt.Printf("Ошибка: аргумент %d, результат %d, ожидаемый результат %d\n", t.number, got, t.result)
-		} else {
-			fmt.Println("OK ", t.number, "=", t.result)
-		}
-	}
+	var num uint
+	fmt.Scan(&num)
+	fmt.Println(fn(num))
 }
 
 /*
