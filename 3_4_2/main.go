@@ -2,72 +2,58 @@ package main
 
 import "fmt"
 
-// Battery is
+// Battery is global name
 type Battery interface {
 	String() string
 }
 
-//Li is
+//Li is type battery
 type Li struct {
 	countCharge string
 }
 
-func bubbleSort(str string) string {
+func sortAndCheck(str string) string {
 	strToRune := []rune(str)
+	if len(strToRune) != 10 {
+		panic("Count numbers != 10.")
+	}
 	for i := 0; i < len(strToRune); i++ {
 		for j := i; j < len(strToRune); j++ {
 			if strToRune[i] > strToRune[j] {
-				swap(strToRune, i, j)
+				tmp := strToRune[i]
+				strToRune[i] = strToRune[j]
+				strToRune[j] = tmp
 			}
 		}
 	}
-	return string(strToRune)
-}
-
-func swap(ar []rune, i, j int) {
-	tmp := ar[i]
-	ar[i] = ar[j]
-	ar[j] = tmp
-}
-
-/*
-func sort(s string) string {
-	resultSortString := make([]rune, 0)
-	sToRune := []rune(s)
-	firstValueInString := sToRune[0]
-	for _, v := range sToRune {
-		if v > firstValueInString {
-			firstValueInString = v
-			resultSortString = append(resultSortString, v)
-		}
-	}
-	return string(resultSortString)
-}
-
-
-	resultString := ""
-	for _, v := range l.countCharge {
-		if v == '0' {
+	resultString := make([]rune, 0)
+	for _, val := range strToRune {
+		if val == '0' {
 			resultString = append(resultString, ' ')
-		} else if v == '1' {
-			resultString = append(resultString, ' ')
+		} else if val == '1' {
+			resultString = append(resultString, 'X')
 		} else {
-
+			panic("Input 0 or 1")
 		}
 	}
-}*/
+	return string(resultString)
+}
 
 func (l *Li) String() string {
 	return fmt.Sprintf("[%v]", l.countCharge)
 }
 
 func main() {
+	fmt.Println("Input 10 numbers 0 or 1.")
 	chargeString := ""
-	fmt.Scan(&chargeString)
-	chargeString = bubbleSort(chargeString)
-	fmt.Println(chargeString)
-	// var batteryForTest Battery = &Li{chargeString}
-	// batteryForTest.String()
+	_, err := fmt.Scan(&chargeString)
+	if err != nil {
+		fmt.Printf("Error: %v", err)
+	}
+	chargeString = sortAndCheck(chargeString)
+	var batteryForTest Battery = &Li{chargeString}
+	result := batteryForTest.String()
+	fmt.Println(result)
 
 }
 
