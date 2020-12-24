@@ -12,10 +12,29 @@ type Li struct {
 	countCharge string
 }
 
+func bubbleSort(str string) string {
+	strToRune := []rune(str)
+	for i := 0; i < len(strToRune); i++ {
+		for j := i; j < len(strToRune); j++ {
+			if strToRune[i] > strToRune[j] {
+				swap(strToRune, i, j)
+			}
+		}
+	}
+	return string(strToRune)
+}
+
+func swap(ar []rune, i, j int) {
+	tmp := ar[i]
+	ar[i] = ar[j]
+	ar[j] = tmp
+}
+
+/*
 func sort(s string) string {
 	resultSortString := make([]rune, 0)
 	sToRune := []rune(s)
-	firstValueInString := rune(s[0])
+	firstValueInString := sToRune[0]
 	for _, v := range sToRune {
 		if v > firstValueInString {
 			firstValueInString = v
@@ -23,7 +42,9 @@ func sort(s string) string {
 		}
 	}
 	return string(resultSortString)
-/*
+}
+
+
 	resultString := ""
 	for _, v := range l.countCharge {
 		if v == '0' {
@@ -37,14 +58,16 @@ func sort(s string) string {
 }*/
 
 func (l *Li) String() string {
-	return fmt.Sprintf("[%v]", sort(l.countCharge))
+	return fmt.Sprintf("[%v]", l.countCharge)
 }
 
 func main() {
 	chargeString := ""
 	fmt.Scan(&chargeString)
-	var batteryForTest Battery = &Li{chargeString}
-	batteryForTest.String()
+	chargeString = bubbleSort(chargeString)
+	fmt.Println(chargeString)
+	// var batteryForTest Battery = &Li{chargeString}
+	// batteryForTest.String()
 
 }
 
