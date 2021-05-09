@@ -1,11 +1,13 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 func main() {
 	inputStream := make(chan string)
 	outputStream := make(chan string)
-	stroka := "11233445556886"
+	stroka := "112336445556886"
 
 	go func() {
 		for _, val := range stroka {
@@ -17,18 +19,32 @@ func main() {
 	go removeDuplicates(inputStream, outputStream)
 
 	for x := range outputStream {
-		fmt.Println(x)
+		fmt.Print(x)
 	}
 }
 
 func removeDuplicates(inputStream, outputStream chan string) {
-	bufferValue := <-inputStream
+	bufferValues := ""
 	for x := range inputStream {
-		if x != bufferValue {
-			outputStream <- bufferValue
-			bufferValue = x
-		}
+		bufferValues += x
 	}
+	resultString := func(s string) string {
+		sToRune := []rune(s)
+		keys := make(map[rune]bool)
+		list := []rune{}
+		for _, entry := range sToRune {
+			if _, value := keys[entry]; !value {
+				keys[entry] = true
+				list = append(list, entry)
+			}
+		}
+		return string(list)
+	}(bufferValues)
+
+	for _, v := range resultString {
+		outputStream <- string(v)
+	}
+
 	close(outputStream)
 }
 
