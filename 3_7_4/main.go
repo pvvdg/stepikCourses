@@ -13,7 +13,6 @@ import (
 const now = 1589570165
 
 func main() {
-	unixTime := time.Unix(now, 0)
 	inputedTime, err := bufio.NewReader(os.Stdin).ReadString('\n')
 	if err != nil && err != io.EOF {
 		log.Fatalf("%v", err)
@@ -25,11 +24,8 @@ func main() {
 	inputedTime = strings.Replace(inputedTime, " ", "", -1)
 	fmt.Println(inputedTime)
 	dur, err := time.ParseDuration(inputedTime)
-	fmt.Println(dur.Minutes())
-	/*d, err := time.ParseDuration("1h15m30.918273645s")
-	if err != nil && err != io.EOF {
-		panic(err)
-	}*/
+	unixTime := time.Unix(now+int64(dur.Seconds()), 0)
+	fmt.Println(unixTime.UTC())
 }
 
 /*
