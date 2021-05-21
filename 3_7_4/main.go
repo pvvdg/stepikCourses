@@ -4,15 +4,20 @@ import (
 	"bufio"
 	"fmt"
 	"io"
+	"log"
 	"os"
 	"strings"
 	"time"
 )
 
+const now = 1589570165
+
 func main() {
+	unixTime := time.Unix(now, 0)
 	inputedTime, err := bufio.NewReader(os.Stdin).ReadString('\n')
 	if err != nil && err != io.EOF {
-		panic(err)
+		log.Fatalf("%v", err)
+		return
 	}
 	inputedTime = inputedTime[:len(inputedTime)-2]
 	inputedTime = strings.Replace(inputedTime, "мин.", "m", 1)
