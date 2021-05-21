@@ -22,10 +22,10 @@ func main() {
 	inputedTime = strings.Replace(inputedTime, "мин.", "m", 1)
 	inputedTime = strings.Replace(inputedTime, "сек.", "s", 1)
 	inputedTime = strings.Replace(inputedTime, " ", "", -1)
-	fmt.Println(inputedTime)
 	dur, err := time.ParseDuration(inputedTime)
+	fmt.Println(int64(dur.Seconds()))
 	unixTime := time.Unix(now+int64(dur.Seconds()), 0)
-	fmt.Println(unixTime.UTC())
+	fmt.Println(unixTime.UTC().Format("Mon Jan _2 15:04:05 MST 2006"))
 }
 
 /*
